@@ -50,8 +50,10 @@ export default class TodoCollection {
   }
 
   add(title: string) {
-    this.items.push(new Todo(this, { title }))
+    const todo = new Todo(this, { title })
+    this.items.push(todo)
     this.save()
+    return todo
   }
 
   remove(id: string) {
@@ -79,7 +81,6 @@ export default class TodoCollection {
         completed: item.completed,
       })),
     }
-    console.log("Saving", storage)
     localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(storage))
   }
 
