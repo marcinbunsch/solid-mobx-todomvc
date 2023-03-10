@@ -33,4 +33,37 @@ describe("TodoCollection", function () {
       assert.equal(todos.items.length, 0)
     })
   })
+
+  describe("#getFilteredItems", function () {
+    it("returns all items when filter is 'all'", function () {
+      const todos = new TodoCollection()
+      todos.add("Buy milk")
+      todos.add("Buy eggs")
+      todos.add("Buy bread")
+
+      assert.equal(todos.getFilteredItems("all").length, 3)
+    })
+
+    it("returns only active items when filter is 'active'", function () {
+      const todos = new TodoCollection()
+      const first = todos.add("Buy milk")
+      todos.add("Buy eggs")
+      todos.add("Buy bread")
+
+      first.toggleCompleted()
+
+      assert.equal(todos.getFilteredItems("active").length, 2)
+    })
+
+    it("returns only completed items when filter is 'completed'", function () {
+      const todos = new TodoCollection()
+      const first = todos.add("Buy milk")
+      todos.add("Buy eggs")
+      todos.add("Buy bread")
+
+      first.toggleCompleted()
+
+      assert.equal(todos.getFilteredItems("completed").length, 1)
+    })
+  })
 })
