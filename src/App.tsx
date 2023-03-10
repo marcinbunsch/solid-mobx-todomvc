@@ -8,6 +8,7 @@ const App: Component = () => {
     <div>
       <Routes>
         <Route path="/" component={Todos} />
+        <Route path="/solid-mobx-todomvc" component={Todos} />
       </Routes>
     </div>
   )
